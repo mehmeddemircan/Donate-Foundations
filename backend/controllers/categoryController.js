@@ -18,12 +18,38 @@ exports.createCategory = catchAsyncErrors(async(req,res) => {
     }
 })
 
+exports.getAllCategoryOnlyName = catchAsyncErrors(async(req,res) => {
+    try {
+        const categories = await Category.find().select("name isVictim")
+        res.status(200).json({
+            data : categories
+        })
+    } catch (error) {
+        res.status(500).json({error : error.message})
+    }
+})
+
 exports.getAllCategory = catchAsyncErrors(async(req,res) => {
     try {
         const categories = await Category.find()
         res.status(200).json({
             data : categories
         })
+    } catch (error) {
+        res.status(500).json({error : error.message})
+    }
+})
+
+
+exports.getCategoryDetails = catchAsyncErrors(async(req,res) => {
+    try {
+        const categoryDetails = await Category.findById(req.params.categoryId)
+
+        res.status(200).json({
+            success : true ,
+            data : categoryDetails
+        })
+
     } catch (error) {
         res.status(500).json({error : error.message})
     }

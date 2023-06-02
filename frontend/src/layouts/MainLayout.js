@@ -2,14 +2,15 @@ import React, { Fragment, useEffect } from 'react'
 import MainHeader from '../components/header/MainHeader'
 import MainFooter from '../components/footer/MainFooter'
 import { useDispatch } from 'react-redux'
-import { getAllCategory } from '../redux-toolkit/actions/categoryActions'
+
+import { GetCategoriesName } from '../redux/actions/categoryActions'
 
 const MainLayout = ({children}) => {
     
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getAllCategory())
+    dispatch(GetCategoriesName())
   }, [dispatch])
 
   return (

@@ -9,7 +9,20 @@ var categorySchema = new mongoose.Schema({
     isVictim : {
         type : Boolean,
         default : false 
-    }
+    },
+    images : [
+        {
+            public_id : {
+                type : String,
+                required : true ,
+            },
+            url : {
+                type : String,
+                required: true 
+            }
+            
+        }
+    ]
    
 },{timestamps : true });
 

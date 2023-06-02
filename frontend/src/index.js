@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import "antd/dist/reset.css";
 // redux toolkit
 import {Provider} from 'react-redux'
-import { store } from './redux-toolkit/store';
+import store from './redux/store';
 
 // i18n
 import i18next from "i18next";

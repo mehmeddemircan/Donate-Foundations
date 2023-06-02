@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from 'react'
-import { getAllCategory } from '../../redux-toolkit/actions/categoryActions'
+
 import { useSelector , useDispatch } from 'react-redux'
 import CategoryCard from '../card/CategoryCard'
 
 const CategoryList = () => {
 
-    const category = useSelector((state) => state.category)
+    const getCategoriesName = useSelector((state) => state.category.getCategoriesName)
   return (
     <Fragment>
         
@@ -15,7 +15,7 @@ const CategoryList = () => {
 
 </div>
         <div class="flex justify-between">
-        {category.data.map((item) => (
+        {getCategoriesName.categories.map((item) => (
           <CategoryCard key={item._id} item={item} />
         ))}
         </div>
