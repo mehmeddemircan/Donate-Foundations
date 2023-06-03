@@ -2,12 +2,14 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import categoryReducer from "./reducers/categoryReducer";
+import { authReducer } from "./reducers/authReducer";
 
 
 
 
 const rootReducer = combineReducers({
-    category : categoryReducer
+    auth : authReducer,
+    category : categoryReducer,
  
 })
 
