@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import { Fragment, useState } from "react";
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -8,59 +8,90 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import AuthModal from '../modal/AuthModal'
-import { useSelector } from 'react-redux'
-import LanguageModal from '../modal/LanguageModal'
+} from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  PhoneIcon,
+  PlayCircleIcon,
+} from "@heroicons/react/20/solid";
+import AuthModal from "../modal/AuthModal";
+import { useSelector } from "react-redux";
+import LanguageModal from "../modal/LanguageModal";
+import { LoggedInSegment } from "./LoggedInSegment";
+import { NotLoggedInSegment } from "./NotLoggedInSegment";
 
 const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
+  {
+    name: "Analytics",
+    description: "Get a better understanding of your traffic",
+    href: "#",
+    icon: ChartPieIcon,
+  },
+  {
+    name: "Engagement",
+    description: "Speak directly to your customers",
+    href: "#",
+    icon: CursorArrowRaysIcon,
+  },
+  {
+    name: "Security",
+    description: "Your customers’ data will be safe and secure",
+    href: "#",
+    icon: FingerPrintIcon,
+  },
+  {
+    name: "Integrations",
+    description: "Connect with third-party tools",
+    href: "#",
+    icon: SquaresPlusIcon,
+  },
+  {
+    name: "Automations",
+    description: "Build strategic funnels that will convert",
+    href: "#",
+    icon: ArrowPathIcon,
+  },
+];
 const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
+  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+  { name: "Contact sales", href: "#", icon: PhoneIcon },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 const MainHeader = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const [showAuthModal, setShowAuthModal] = useState(false)
 
-    const handleShowAuthModal = () => {
-        setShowAuthModal(true)
-    }
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
 
-    const handleCloseAuthModal =() => {
-        setShowAuthModal(false)
-    }
+  const handleShowLanguageModal = () => {
+    setShowLanguageModal(true);
+  };
+  const handleCloseLanguageModal = () => {
+    setShowLanguageModal(false);
+  };
 
-    const [showLanguageModal, setShowLanguageModal] = useState(false)
-
-    const handleShowLanguageModal = () => {
-      setShowLanguageModal(true)
-    }
-    const handleCloseLanguageModal = () => {
-      setShowLanguageModal(false)
-    }
-
-    const getCategoriesName = useSelector((state) => state.category.getCategoriesName)
-
+  const getCategoriesName = useSelector(
+    (state) => state.category.getCategoriesName
+  );
+    const auth = useSelector((state) => state.auth)
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img
+              className="h-8 w-auto"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              alt=""
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -77,7 +108,10 @@ const MainHeader = () => {
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Product
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-400"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -97,10 +131,16 @@ const MainHeader = () => {
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                        <item.icon
+                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          aria-hidden="true"
+                        />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-900">
+                        <a
+                          href={item.href}
+                          className="block font-semibold text-gray-900"
+                        >
                           {item.name}
                           <span className="absolute inset-0" />
                         </a>
@@ -116,7 +156,10 @@ const MainHeader = () => {
                       href={item.href}
                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                     >
-                      <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                      <item.icon
+                        className="h-5 w-5 flex-none text-gray-400"
+                        aria-hidden="true"
+                      />
                       {item.name}
                     </a>
                   ))}
@@ -125,11 +168,13 @@ const MainHeader = () => {
             </Transition>
           </Popover>
 
-                     
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Bağış Kategoriler
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-400"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -148,9 +193,11 @@ const MainHeader = () => {
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
-                    
                       <div className="flex-auto">
-                        <a href={`/donation/${item.name}/details`} className="block font-semibold text-gray-900">
+                        <a
+                          href={`/donation/${item.name}/details`}
+                          className="block font-semibold text-gray-900"
+                        >
                           {item.name}
                           <span className="absolute inset-0" />
                         </a>
@@ -159,40 +206,48 @@ const MainHeader = () => {
                     </div>
                   ))}
                 </div>
-               
               </Popover.Panel>
             </Transition>
           </Popover>
-                   
-          <a href="/our-about" className="text-sm font-semibold leading-6 text-gray-900">
-           Hakkımızda
+
+          <a
+            href="/our-about"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Hakkımızda
           </a>
-          <a href="/contact-us" className="text-sm font-semibold leading-6 text-gray-900">
-          İletişim
+          <a
+            href="/contact-us"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            İletişim
           </a>
         </Popover.Group>
-       
-      
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end" onClick={handleShowLanguageModal}>
-        <a href="#" className="text-sm font-semibold leading-6 text-gray-900 me-3">
-          <i class="fa-solid fa-globe"></i>
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in 
+
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <a
+            href="#"
+            className="text-sm font-semibold leading-6 text-gray-900 me-3"
+            onClick={handleShowLanguageModal}
+          >
+            <i class="fa-solid fa-globe"></i>
           </a>
         
         </div>
-          <LanguageModal 
-            showLanguageModal={showLanguageModal}
-            handleCloseLanguageModal={handleCloseLanguageModal}
-          />
-
-        <AuthModal 
-            showAuthModal={showAuthModal}
-            handleCloseAuthModal={handleCloseAuthModal}
+       
+        <LanguageModal
+          showLanguageModal={showLanguageModal}
+          handleCloseLanguageModal={handleCloseLanguageModal}
         />
+
+{auth.authenticate ? <LoggedInSegment /> : <NotLoggedInSegment />}
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -222,7 +277,10 @@ const MainHeader = () => {
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                         Product
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-5 w-5 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -273,7 +331,7 @@ const MainHeader = () => {
         </Dialog.Panel>
       </Dialog>
     </header>
-  )
-}
+  );
+};
 
-export default MainHeader
+export default MainHeader;
