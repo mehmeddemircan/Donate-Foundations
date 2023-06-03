@@ -2,15 +2,31 @@ import { BrowserRouter as Router , Routes,Route} from 'react-router-dom'
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import PaymentPage from './pages/PaymentPage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import ContactUsPage from './pages/ContactUsPage';
 import AboutPage from './pages/AboutPage';
 import DonationDetailsPage from './pages/DonationDetailsPage';
+import { isUserLoggedIn } from './redux/actions/authActions';
 
 
 function App() {
 
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
+  // When we fresh the page if you are in logged in  stay logged in
+  useEffect(() => {
+    if (!auth.authenticate) {
+    
+        dispatch(isUserLoggedIn());
+   
+   
+  
+    }
+ 
+ 
+  }, [dispatch,auth.authenticate]);
 
   return (
     <Router>
