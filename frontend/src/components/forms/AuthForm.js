@@ -1,16 +1,8 @@
 import React, { Fragment, useState } from "react";
 
-const AuthForm = () => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const AuthForm = ({firstname,setFirstname,lastname,setLastname,email,setEmail,password,setPassword,userLogin,handleToggleRegister,showRegister}) => {
 
-  const [showRegister, setShowRegister] = useState(false);
 
-  const handleToggleRegister = () => {
-    setShowRegister((prev) => !prev);
-  };
 
   return (
     <Fragment>
@@ -101,7 +93,8 @@ const AuthForm = () => {
               type="submit"
               class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
                 px-4 py-3 mt-6"
-            >
+             onClick={userLogin}
+           >
               Submit
             </button>
           </form>
