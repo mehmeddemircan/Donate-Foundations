@@ -3,6 +3,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import categoryReducer from "./reducers/categoryReducer";
 import { authReducer } from "./reducers/authReducer";
+import donationReducer from "./reducers/donationReducer";
+import stripePaymentReducer from "./reducers/stripeReducer";
 
 
 
@@ -10,6 +12,8 @@ import { authReducer } from "./reducers/authReducer";
 const rootReducer = combineReducers({
     auth : authReducer,
     category : categoryReducer,
+    donation : donationReducer,
+    stripePayment : stripePaymentReducer
  
 })
 
