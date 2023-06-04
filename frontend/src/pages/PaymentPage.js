@@ -1,7 +1,26 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import MainLayout from "../layouts/MainLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { CreatePaymentIntent } from "../redux/actions/stripeActions";
 
 const PaymentPage = () => {
+
+  const createDonation = useSelector((state) => state.donation.createDonation)
+  const getCategoriesName = useSelector((state) => state.category.getCategoriesName)
+
+  const findCategoryById = (categoryId) => {
+    const category = getCategoriesName.categories.find((cat) => cat.id === categoryId);
+    return category ? category : '';
+  };
+
+  const categoryItem = findCategoryById(createDonation.donation.category)
+  const [donationAmount, setDonationAmount] = useState(createDonation.donation.donationAmount)
+  const dispatch = useDispatch()
+
+  const handlePayment = () => {
+    dispatch(CreatePaymentIntent({donationAmount}))
+  }
+
   return (
  
         <MainLayout>
@@ -9,7 +28,7 @@ const PaymentPage = () => {
           
       <div class="my-4 grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div class="px-4 pt-8">
-          <p class="text-xl font-medium">Order Summary</p>
+          <p class="text-xl font-medium">Order Summary {donationAmount}</p>
           <p class="text-gray-400">
             Check your items. And select a suitable shipping method.
           </p>
@@ -23,7 +42,7 @@ const PaymentPage = () => {
               />
               <div class="flex w-full flex-col px-4 py-4">
                 <span class="font-semibold">
-                  Nike Air Max Pro 8888 - Super Light
+                 {categoryItem.name} 
                 </span>
                 <span class="float-right text-gray-400">42EU - 8.5US</span>
                 <p class="text-lg font-bold">$138.99</p>
@@ -178,20 +197,20 @@ const PaymentPage = () => {
             <div class="mt-6 border-t border-b py-2">
               <div class="flex items-center justify-between">
                 <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                <p class="font-semibold text-gray-900">$399.00</p>
+                <p class="font-semibold text-gray-900">{createDonation.donation.donationAmount} TRY </p>
               </div>
-              <div class="flex items-center justify-between">
+              {/* <div class="flex items-center justify-between">
                 <p class="text-sm font-medium text-gray-900">Shipping</p>
                 <p class="font-semibold text-gray-900">$8.00</p>
-              </div>
+              </div> */}
             </div>
             <div class="mt-6 flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-900">Total</p>
-              <p class="text-2xl font-semibold text-gray-900">$408.00</p>
+              <p class="text-sm font-medium text-gray-900">Toplam</p>
+              <p class="text-2xl font-semibold text-gray-900">{createDonation.donation.donationAmount} TRY </p>
             </div>
           </div>
-          <button  class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-            Place Order
+          <button onClick={handlePayment} class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+          Ödeme Yap
           </button>
         </div>
       </div>

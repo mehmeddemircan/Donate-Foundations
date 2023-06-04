@@ -1,10 +1,15 @@
 import { Card } from 'antd';
 import React, { Fragment } from 'react'
+import { useNavigate } from 'react-router-dom';
 const { Meta } = Card;
 const CategoryCard = ({item}) => {
+
+  const navigate = useNavigate()
+
   return (
 <Fragment>
 <Card
+    onClick={() => navigate(`/donation/${item._id}/details`)}
     style={{
       width: 300,
     }}
