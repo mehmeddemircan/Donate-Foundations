@@ -18,11 +18,7 @@ function App() {
   // When we fresh the page if you are in logged in  stay logged in
   useEffect(() => {
     if (!auth.authenticate) {
-    
         dispatch(isUserLoggedIn());
-   
-   
-  
     }
  
  
@@ -32,8 +28,8 @@ function App() {
     <Router>
       <Routes>
         <Route index path='/' element={<HomePage />} />
-        <Route path='/donation' element={<PaymentPage />} />
-        <Route path='/donation/:donationName/details' element={<DonationDetailsPage />} />
+        <Route path='/payment' element={<PaymentPage />} />
+        <Route path='/donation/:categoryId/details' element={<DonationDetailsPage />} />
         <Route path='/contact-us' element={<ContactUsPage />} />
         <Route path='/our-about' element={<AboutPage />}  />
         <Route path='*' element={<NotFoundPage />} />
