@@ -85,7 +85,7 @@ const MainHeader = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
               className="h-8 w-auto"
@@ -195,7 +195,7 @@ const MainHeader = () => {
                     >
                       <div className="flex-auto">
                         <a
-                          href={`/donation/${item.name}/details`}
+                          href={`/donation/${item._id}/details`}
                           className="block font-semibold text-gray-900"
                         >
                           {item.name}
