@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.5.2",
     "axios": "^1.4.0",
+    "flowbite": "^1.6.6",
+    "flowbite-react": "^0.4.9",
     "i18next": "^22.5.0",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",

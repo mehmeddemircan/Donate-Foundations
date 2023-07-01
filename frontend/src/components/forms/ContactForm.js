@@ -7,7 +7,7 @@ const ContactForm = () => {
     const [agreed, setAgreed] = useState(false)
   return (
  <Fragment>
-     <div className="bg-gray-50 px-6 py-3 sm:py-32 lg:px-8">
+     <div className="bg-white px-6 py-3 sm:py-32 lg:px-8">
     
      <div className="mx-auto max-w-2xl text-center mt-3">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Merhabalar bizimle iletişime geçin</h2>
