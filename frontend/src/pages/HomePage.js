@@ -32,7 +32,7 @@ const HomePage = () => {
       
         <HomeContentSection />
         <hr />
-        <CategoryList />
+        {/* <CategoryList /> */}
         <LogoGrid />
     </MainLayout>
   )
