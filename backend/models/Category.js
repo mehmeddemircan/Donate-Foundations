@@ -6,6 +6,11 @@ var categorySchema = new mongoose.Schema({
         type: String,
         required : true 
     },
+    description : {
+        type : String,
+
+    } ,
+    
     isVictim : {
         type : Boolean,
         default : false 

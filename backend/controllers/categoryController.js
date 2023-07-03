@@ -1,6 +1,6 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Category = require("../models/Category");
-
+const cloudinary = require('cloudinary')
 
 exports.createCategory = catchAsyncErrors(async(req,res) => {
     try {
@@ -31,7 +31,7 @@ exports.getAllCategoryOnlyName = catchAsyncErrors(async(req,res) => {
 
 exports.getAllCategory = catchAsyncErrors(async(req,res) => {
     try {
-        const categories = await Category.find()
+        const categories = await Category.find().select({ name : -1})
         res.status(200).json({
             data : categories
         })
@@ -69,16 +69,40 @@ exports.deleteCategory = catchAsyncErrors(async(req,res) => {
     }
 })
 
+const uploadImagesToCloudinary = async (images) => {
+    const uploadedImages = await Promise.all(
+      images.map(async (image) => {
+        const result = await cloudinary.uploader.upload(image);
+        return { public_id: result.public_id, url: result.secure_url };
+      })
+    );
+    return uploadedImages;
+  };
+
 exports.updateCategory = catchAsyncErrors(async(req,res) => {
     try {
-        
-      const updatedCategory =   await Category.findByIdAndUpdate(req.params.categoryId,{$set : req.body},{new : true })
-        res.status(200).json({
-            success : true ,
-            data : updatedCategory,
-            message : 'Başarılı şekilde güncellendi '
-        })
-    } catch (error) {
-        res.status(500).json({error : error.message})
-    }
+    
+        const category = await Category.findById(req.params.categoryId)
+    
+        if (!category) {
+          res.status(404).json({message : "Category bulunamadı "})
+          return 
+        }
+    
+            category.name = req.body.category || category.name 
+            category.description = req.body.description || category.description
+            category.isVictim = req.body.isVictim || category.isVictim
+            
+           // Upload new images to Cloudinary if provided
+           if (req.body.images && req.body.images.length > 0) {
+            const uploadedImages = await uploadImagesToCloudinary(req.body.images);
+            category.images = uploadedImages;
+          }
+    
+          await category.save()
+    
+        res.status(200).json({ message: "Başarılı şekilde categori güncellendi " });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
 })

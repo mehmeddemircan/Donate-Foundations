@@ -27,31 +27,31 @@ import { NotLoggedInSegment } from '../header/NotLoggedInSegment';
 
 const products = [
   {
-    name: "Analytics",
+    name: "Haberler",
     description: "Get a better understanding of your traffic",
     href: "#",
     icon: ChartPieIcon,
   },
   {
-    name: "Engagement",
+    name: "İnsani Yardım Hizmetlerimiz",
     description: "Speak directly to your customers",
     href: "#",
     icon: CursorArrowRaysIcon,
   },
   {
-    name: "Security",
+    name: "Kurban Hizmetlerimiz",
     description: "Your customers’ data will be safe and secure",
     href: "#",
     icon: FingerPrintIcon,
   },
   {
-    name: "Integrations",
+    name: "Eğitim Hizmetlerimiz",
     description: "Connect with third-party tools",
     href: "#",
     icon: SquaresPlusIcon,
   },
   {
-    name: "Automations",
+    name: "Basın-Yayın Hizmetlerimiz",
     description: "Build strategic funnels that will convert",
     href: "#",
     icon: ArrowPathIcon,
@@ -97,7 +97,7 @@ const MegaMenu = () => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              Faaliyetlerimiz
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
                 aria-hidden="true"
@@ -251,7 +251,7 @@ const MegaMenu = () => {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                       Faaliyetlerimiz
                         <ChevronDownIcon
                           className={classNames(
                             open ? "rotate-180" : "",

@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreateDonation } from "../redux/actions/donationActions";
 import { message } from "antd";
 import { CREATE_DONATION_RESET } from "../redux/constants/donationConstants";
+import { GetCategoryDetails } from "../redux/actions/categoryActions";
+import LoadingSpinner from "../components/spinner/LoadingSpinner";
 
 const DonationDetailsPage = () => {
-  const [show, setShow] = useState(false);
-  const [show2, setShow2] = useState(false);
+  const [show, setShow] = useState(true);
+  const [show2, setShow2] = useState(true);
 
   const {categoryId} = useParams()
 
@@ -27,6 +29,11 @@ const DonationDetailsPage = () => {
   }
 
   const createDonation = useSelector((state) => state.donation.createDonation)
+  const getCategoryDetails = useSelector((state) => state.category.getCategoryDetails)
+
+  useEffect(() => {
+      dispatch(GetCategoryDetails(categoryId))
+  }, [dispatch,categoryId])
 
   useEffect(() => {
       if(createDonation.success){
@@ -39,12 +46,12 @@ const DonationDetailsPage = () => {
   return (
     <MainLayout>
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
-        <CategoryDetailsGallery />
+        {getCategoryDetails.loading  ?    <LoadingSpinner /> : getCategoryDetails.success && <CategoryDetailsGallery />}
 
         <div className="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
           <div className="border-b border-gray-200 pb-6">
             <p className="text-sm leading-none text-gray-600">
-              Balenciaga Fall Collection 
+             
             </p>
             <h1
               className="
@@ -57,7 +64,7 @@ const DonationDetailsPage = () => {
 							mt-2
 						"
             >
-              Balenciaga Signature Sweatshirt
+              {getCategoryDetails.category.name} 
             </h1>
           </div>
           <DonationForm 
@@ -75,27 +82,11 @@ const DonationDetailsPage = () => {
 
           />
           <div>
-            <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 mt-7">
-              It is a long established fact that a reader will be distracted by
-              thereadable content of a page when looking at its layout. The
-              point of usingLorem Ipsum is that it has a more-or-less normal
-              distribution of letters.
+            <h4 className="mt-4">Açıklama</h4>
+            <p className="xl:pr-32  text-base lg:leading-tight  leading-normal text-gray-600 mt-7">
+                {getCategoryDetails.category.description}
             </p>
-            <p className="text-base leading-4 mt-7 text-gray-600">
-              Product Code: 8BN321AF2IF0NYA
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600">
-              Length: 13.2 inches
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600">
-              Height: 10 inches
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600">
-              Depth: 5.1 inches
-            </p>
-            <p className="md:w-96 text-base leading-normal text-gray-600 mt-4">
-              Composition: 100% calf leather, inside: 100% lamb leather
-            </p>
+           
           </div>
           <div>
             <div className="border-t border-b py-4 mt-7 border-gray-200">
@@ -104,7 +95,7 @@ const DonationDetailsPage = () => {
                 className="flex justify-between items-center cursor-pointer"
               >
                 <p className="text-base leading-4 text-gray-800">
-                  Shipping and returns
+                 Zekat Bilgilendirmesi
                 </p>
                 <button
                   className="
@@ -141,18 +132,22 @@ const DonationDetailsPage = () => {
                 }
                 id="sect"
               >
-                You will be responsible for paying for your own shipping costs
-                for returning your item. Shipping costs are nonrefundable
+            Zekât şartıyla gönderilen bağışlara ikinci bir şart kabul edilmemektedir.
+
+Zekât hesabında toplanan meblağ sadece Kur’an’da belirtilen ihtiyaç sahipleri ve talebeler gibi sarf yerlerinde (ülkemizde ve dünyanın her yerinde) kullanılmaktadır.
+
+Şartlı bağışlarınızı hayrat olarak kabul etmekteyiz ve belirttiğiniz yerlerde değerlendirmekteyiz.
               </div>
             </div>
           </div>
           <div>
-            <div className="border-b py-4 border-gray-200">
+            <div className="border-b py-4 border-gray-200 ">
               <div
                 onClick={() => setShow2(!show2)}
                 className="flex justify-between items-center cursor-pointer"
+                
               >
-                <p className="text-base leading-4 text-gray-800">Contact us</p>
+                <p className="text-base leading-4 text-gray-800">Hüdayi Bağışcı Hattı</p>
                 <button
                   className="
 									cursor-pointer
@@ -188,8 +183,8 @@ const DonationDetailsPage = () => {
                 }
                 id="sect"
               >
-                If you have any questions on how to return your item to us,
-                contact us.
+              Yurt dışı kurban, eğitim, mescit, zekât, erzak vb bağışlarınız için
+0532 691 48 32 özel hattımızdan bizi direkt arayabilirsiniz.
               </div>
             </div>
           </div>
