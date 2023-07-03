@@ -6,7 +6,7 @@ exports.createDonation = catchAsyncErrors(async(req,res) => {
     try {
 
         const newDonation = new Donation(req.body)
-        const savedDonation  = await newDonation.save()
+        const savedDonation  = await (await newDonation.save()).populate('category')
         res.status(200).json({
             success : true ,
             data : savedDonation ,
