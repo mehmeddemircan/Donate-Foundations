@@ -91,7 +91,7 @@ const MainHeader = () => {
       <div className="container bg-light">
       <div class="d-flex flex-row align-items-center justify-content-between ">
   <div class="d-flex align-items-center">
-    <a href="https://www.hudayivakfi.org/" title="Hüdayi Vakfı" rel="home" class="logo-link ts-logo">
+    <a href="/" title="Hüdayi Vakfı" rel="home" class="logo-link ts-logo">
       <h1>
         <img src="https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo.png" class="logo-image" alt="Hüdayi Vakfı" srcset="https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo.png, https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo_2x.png 2x" />
       </h1>
