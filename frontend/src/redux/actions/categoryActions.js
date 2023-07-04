@@ -9,7 +9,7 @@ export const GetCategoriesName = () => async (dispatch) => {
       });
   
       const { data } = await axios.get(
-        `http://localhost:5000/api/categories`
+        `https://vakifbagisapi.onrender.com/api/categories`
       );
   
       dispatch({
@@ -31,7 +31,7 @@ export const GetCategoriesName = () => async (dispatch) => {
       });
   
       const { data } = await axios.get(
-        `http://localhost:5000/api/categories/${categoryId}/details`
+        `https://vakifbagisapi.onrender.com/api/categories/${categoryId}/details`
       );
   
       dispatch({

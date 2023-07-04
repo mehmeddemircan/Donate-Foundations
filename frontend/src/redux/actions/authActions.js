@@ -4,7 +4,7 @@ import { IS_USER_LOGGED_IN_REQUEST, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LO
 export const Login = (user) => async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
-      const res = await axios.post(`http://localhost:5000/api/login`, {
+      const res = await axios.post(`https://vakifbagisapi.onrender.com/api/login`, {
         ...user,
       });
   
@@ -40,7 +40,7 @@ export const register = (user) => async (dispatch) => {
   
   
       
-      const res = await axios.post("http://localhost:5000/api/register", user);
+      const res = await axios.post("https://vakifbagisapi.onrender.com/api/register", user);
       if (res.status === 201) {
           
         const { token, user ,message} = res.data;

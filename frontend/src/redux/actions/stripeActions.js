@@ -10,7 +10,7 @@ export const CreatePaymentIntent =  (stripeItem) => async(dispatch) => {
    
 
         
-        const {data }=  await axios.post('http://localhost:5000/api/stripe-donate',stripeItem)
+        const {data }=  await axios.post('https://vakifbagisapi.onrender.com/api/stripe-donate',stripeItem)
   
         //   dispatch success
           dispatch({
