@@ -8,6 +8,7 @@ import ContactUsPage from './pages/ContactUsPage';
 import AboutPage from './pages/AboutPage';
 import DonationDetailsPage from './pages/DonationDetailsPage';
 import { isUserLoggedIn } from './redux/actions/authActions';
+import DonationCategoriesPage from './pages/DonationCategoriesPage';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <Routes>
         <Route index path='/' element={<HomePage />} />
+        <Route path='/bagis-kategoriler' element={<DonationCategoriesPage />} />
         <Route path='/payment' element={<PaymentPage />} />
         <Route path='/donation/:categoryId/details' element={<DonationDetailsPage />} />
         <Route path='/contact-us' element={<ContactUsPage />} />

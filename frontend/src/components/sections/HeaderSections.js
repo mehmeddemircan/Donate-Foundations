@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeaderSections = () => {
+const   HeaderSections = () => {
   return (
  
       <div className="my-5">

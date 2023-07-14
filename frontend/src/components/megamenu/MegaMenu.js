@@ -84,14 +84,14 @@ const MegaMenu = () => {
 
     <header className="container bg-light border-t border-b">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center sr:justify-start lg:justify-center p-6 lg:px-8"
         aria-label="Global"
       >
       
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center sr:justify-start lg:justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -100,7 +100,7 @@ const MegaMenu = () => {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+            <Popover.Button className="flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900">
               Faaliyetlerimiz
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
@@ -162,96 +162,38 @@ const MegaMenu = () => {
             </Transition>
           </Popover>
 
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Bağış Kategoriler
-              <ChevronDownIcon
-                className="h-5 w-5 flex-none text-gray-400"
-                aria-hidden="true"
-              />
-            </Popover.Button>
-        
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-              <div className="p-4">
-  {getCategoriesName.categories.map((item) => (
-    <div
-      key={item.name}
-      className="group relative flex items-center justify-between gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-    >
-      <a
-        href={`/donation/${item._id}/details`}
-        className="block font-semibold text-gray-900"
-      >
-        {item.name}
-      </a>
-      {item.subcategories.length > 0 && (
-  <Menu as="div" className="">
-  <Menu.Button className="gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-    <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-  </Menu.Button>
+     
 
-  <Transition
-    as={Fragment}
-    enter="transition ease-out duration-100"
-    enterFrom="transform opacity-0 scale-95"
-    enterTo="transform opacity-100 scale-100"
-    leave="transition ease-in duration-75"
-    leaveFrom="transform opacity-100 scale-100"
-    leaveTo="transform opacity-0 scale-95"
-  >
-    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-      <div className="py-1">
-        {item.subcategories.map((subcategory) => (
-           <Menu.Item>
-           {({ active }) => (
-             <a
-               href="#"
-               className={classNames(
-                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                 'block px-4 py-2 text-sm'
-               )}
-             >
-              {subcategory.name}
-             </a>
-           )}
-         </Menu.Item>
-        ))}
-      
-      
-      </div>
-    </Menu.Items>
-  </Transition>
-</Menu>
-      )}
-    
-    </div>
-  ))}
-</div>
-                
-              </Popover.Panel>
-            </Transition>
-          </Popover>
 
           <a
             href="/our-about"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-md font-semibold leading-6 text-gray-900"
           >
             Hakkımızda
           </a>
           <a
             href="/contact-us"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-md font-semibold leading-6 text-gray-900"
           >
             İletişim
+          </a>
+          <a
+            href="/our-about"
+            className="text-md font-semibold leading-6 text-gray-900"
+          >
+            Kurumsal
+          </a>
+          <a
+            href="/our-about"
+            className="text-md font-semibold leading-6 text-gray-900"
+          >
+            Multimedya
+          </a>
+          <a
+            href="/our-about"
+            className="text-md font-semibold leading-6 text-gray-900"
+          >
+            Hüdayi HZ.
           </a>
         </Popover.Group>
 
@@ -316,31 +258,76 @@ const MegaMenu = () => {
                     </>
                   )}
                 </Disclosure>
+                <Disclosure as="div" className="-mx-3">
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                       Bağış Kategoriler
+                        <ChevronDownIcon
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-5 w-5 flex-none"
+                          )}
+                          aria-hidden="true"
+                        />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="mt-2 space-y-2">
+                      {getCategoriesName.categories.map((item) => (
+ 
+                          <Disclosure.Button
+                            key={item.name}
+                            as="a"
+                            href={`/donation/${item._id}/details`}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          >
+                            {item.name}
+                          </Disclosure.Button>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+          
+
+     
                 <a
-                  href="#"
+                  href="/our-about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  Hakkımızda
                 </a>
                 <a
-                  href="#"
+                  href="/contact-us"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                İletişim
                 </a>
                 <a
-                  href="#"
+                  href="/our-about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                Kurumsal
+                </a>
+                <a
+                  href="/our-about"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                Multimedya
+                </a>
+                <a
+                  href="/our-about"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                Hüdayi HZ.
                 </a>
               </div>
+       
               <div className="py-6">
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
+          Giriş Yap
                 </a>
               </div>
             </div>

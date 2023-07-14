@@ -22,6 +22,7 @@ import { NotLoggedInSegment } from "./NotLoggedInSegment";
 import { Dropdown, Space } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import MegaMenu from "../megamenu/MegaMenu";
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
@@ -86,6 +87,7 @@ const MainHeader = () => {
     (state) => state.category.getCategoriesName
   );
     const auth = useSelector((state) => state.auth)
+    const navigate = useNavigate()
   return (
     <Fragment>
       <div className="container bg-light">
@@ -93,13 +95,18 @@ const MainHeader = () => {
   <div class="d-flex align-items-center">
     <a href="/" title="Hüdayi Vakfı" rel="home" class="logo-link ts-logo">
       <h1>
-        <img src="https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo.png" class="logo-image" alt="Hüdayi Vakfı" srcset="https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo.png, https://hudayivakfi.org/wp-content/uploads/2020/08/hudayilogo_2x.png 2x" />
+        <img src="https://www.seyyidburhaneddin.org/home/logoforhomepage" class="logo-image" alt="Hüdayi Vakfı"  />
       </h1>
     </a>
   </div>
   <div class="d-flex align-items-center"></div>
   <div class="d-flex align-items-center">
-
+          
+  <button onClick={() => navigate('/bagis-kategoriler')} className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+              Bağış Kategoriler
+           
+            </button>
+        
           <Popover className="relative">
             <Popover.Button className="flex btn bg-red-600 mx-3 items-center gap-x-1 text-sm font-semibold leading-6 text-white">
                 Bağış Yap
