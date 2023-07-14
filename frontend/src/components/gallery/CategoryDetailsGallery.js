@@ -29,7 +29,7 @@ const CategoryDetailsGallery = () => {
                 {index !== getCategoryDetails.category.images?.length - 1 && (
                   <Image
                     className="h-auto max-w-full rounded-lg"
-                    src={image.url}
+                    src={image?.url}
                     alt=""
                   />
                 )}
