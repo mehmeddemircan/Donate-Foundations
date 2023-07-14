@@ -13,7 +13,7 @@ const CategoryDetailsGallery = () => {
         <div>
           <Image
             class="h-auto max-w-full rounded-lg"
-            src={getCategoryDetails.category.images[8].url}
+            src={getCategoryDetails.category.images[8]?.url}
             alt=""
           />
         </div>
@@ -24,9 +24,9 @@ const CategoryDetailsGallery = () => {
                 console.log(`current index: ${current}, prev index: ${prev}`),
             }}
           >
-            {getCategoryDetails.category.images.map((image, index) => (
+            {getCategoryDetails.category.images?.map((image, index) => (
               <div key={index}>
-                {index !== getCategoryDetails.category.images.length - 1 && (
+                {index !== getCategoryDetails.category.images?.length - 1 && (
                   <Image
                     className="h-auto max-w-full rounded-lg"
                     src={image.url}
