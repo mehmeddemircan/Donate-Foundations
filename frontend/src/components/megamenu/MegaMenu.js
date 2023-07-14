@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fragment, useState } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { Dialog, Disclosure, Popover, Transition,Menu } from "@headlessui/react";
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -18,6 +18,10 @@ import {
 import AuthModal from "../modal/AuthModal";
 import { useSelector } from "react-redux";
 import LanguageModal from "../modal/LanguageModal";
+
+
+
+
 
 import { Dropdown, Space } from "antd";
 import { DownOutlined } from '@ant-design/icons';
@@ -166,7 +170,7 @@ const MegaMenu = () => {
                 aria-hidden="true"
               />
             </Popover.Button>
-
+        
             <Transition
               as={Fragment}
               enter="transition ease-out duration-200"
@@ -177,25 +181,62 @@ const MegaMenu = () => {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
-                  {getCategoriesName.categories.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                    >
-                      <div className="flex-auto">
-                        <a
-                          href={`/donation/${item._id}/details`}
-                          className="block font-semibold text-gray-900"
-                        >
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
-                        {/* <p className="mt-1 text-gray-600">{item.description}</p> */}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="p-4">
+  {getCategoriesName.categories.map((item) => (
+    <div
+      key={item.name}
+      className="group relative flex items-center justify-between gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+    >
+      <a
+        href={`/donation/${item._id}/details`}
+        className="block font-semibold text-gray-900"
+      >
+        {item.name}
+      </a>
+      {item.subcategories.length > 0 && (
+  <Menu as="div" className="">
+  <Menu.Button className="gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+    <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+  </Menu.Button>
+
+  <Transition
+    as={Fragment}
+    enter="transition ease-out duration-100"
+    enterFrom="transform opacity-0 scale-95"
+    enterTo="transform opacity-100 scale-100"
+    leave="transition ease-in duration-75"
+    leaveFrom="transform opacity-100 scale-100"
+    leaveTo="transform opacity-0 scale-95"
+  >
+    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div className="py-1">
+        {item.subcategories.map((subcategory) => (
+           <Menu.Item>
+           {({ active }) => (
+             <a
+               href="#"
+               className={classNames(
+                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                 'block px-4 py-2 text-sm'
+               )}
+             >
+              {subcategory.name}
+             </a>
+           )}
+         </Menu.Item>
+        ))}
+      
+      
+      </div>
+    </Menu.Items>
+  </Transition>
+</Menu>
+      )}
+    
+    </div>
+  ))}
+</div>
+                
               </Popover.Panel>
             </Transition>
           </Popover>

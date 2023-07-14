@@ -31,7 +31,7 @@ exports.getAllCategoryOnlyName = catchAsyncErrors(async(req,res) => {
 
 exports.getAllCategory = catchAsyncErrors(async(req,res) => {
     try {
-        const categories = await Category.find().select({ name : -1})
+        const categories = await Category.find().select({ name : -1, subcategories : -1 }).populate('subcategories', 'name')
         res.status(200).json({
             data : categories
         })
@@ -43,7 +43,7 @@ exports.getAllCategory = catchAsyncErrors(async(req,res) => {
 
 exports.getCategoryDetails = catchAsyncErrors(async(req,res) => {
     try {
-        const categoryDetails = await Category.findById(req.params.categoryId)
+        const categoryDetails = await Category.findById(req.params.categoryId).populate('subcategories','name')
 
         res.status(200).json({
             success : true ,

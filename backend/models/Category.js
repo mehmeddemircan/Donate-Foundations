@@ -1,6 +1,6 @@
 //replace modelSchema,ModelName with whatever you want
 var mongoose = require('mongoose');
-
+const {ObjectId} = mongoose.Schema
 var categorySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -10,7 +10,12 @@ var categorySchema = new mongoose.Schema({
         type : String,
 
     } ,
-    
+    subcategories : [
+        {
+            type : ObjectId,
+            ref : 'SubCategory'
+        }
+    ],
     isVictim : {
         type : Boolean,
         default : false 
